@@ -81,7 +81,12 @@ This is a comprehensive federated learning (FL) attack simulation toolkit design
    python main.py
    ```
 
-2. **Attack Testing**:
+2. **Interactive Attack Simulation**:
+   ```bash
+   python src/interactive_attack_tester.py
+   ```
+
+3. **Automated Attack Testing**:
    ```bash
    python run_test_attack.py
    ```
@@ -122,5 +127,4 @@ Federated-Learning--Fraud-Detection--v1/
 ## Notes
 
 - **Data/Artifacts Not Included**: Large dataset files, trained models, and training artifacts are not stored in the repository.
-- **Clean Baseline**: For attack testing, you'll need a clean FL baseline; run `python main.py` first to generate one.
-
+- **Clean Baseline**: For attack testing, a clean FL baseline is required. Run `python main.py` to generate one, or use the provided baseline files in `artifacts/baselines/` (e.g., `artifacts/baselines/GLOBAL_TEST_results.csv` and `artifacts/baselines/GLOBAL_threshold.txt`).

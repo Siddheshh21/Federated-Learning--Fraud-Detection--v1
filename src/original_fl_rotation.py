@@ -466,7 +466,7 @@ def save_all_metrics(server):
 def evaluate_final_models(server, baseline_results):
     print("\n" + "="*100 + "\nFINAL EVALUATION (CLIENT TESTS)\n" + "="*100)
 
-    global_threshold_path = Config.OUTPUT_DIR / 'Metrics' / 'GLOBAL_threshold.txt'
+    global_threshold_path = Path('artifacts') / 'baselines' / 'GLOBAL_threshold.txt'
     if global_threshold_path.exists():
         with open(global_threshold_path, 'r') as f:
             global_threshold = float(f.read().strip())
@@ -509,7 +509,7 @@ def evaluate_final_models(server, baseline_results):
 
 def evaluate_global_test_set(server):
     print("\n" + "="*100 + "\nGLOBAL TEST (test_data.csv - ORIGINAL 20%, NO SMOTE)\n" + "="*100)
-    global_threshold_path = Config.OUTPUT_DIR / 'Metrics' / 'GLOBAL_threshold.txt'
+    global_threshold_path = Path('artifacts') / 'baselines' / 'GLOBAL_threshold.txt'
     if global_threshold_path.exists():
         with open(global_threshold_path, 'r') as f:
             global_threshold = float(f.read().strip())
@@ -531,7 +531,7 @@ def evaluate_global_test_set(server):
         print(f"📊 Results: AUC={metrics['auc_roc']:.4f}, F1={metrics['f1_score']:.4f}, Recall={metrics['recall']:.4f}, Accuracy={metrics['accuracy']:.4f}")
         print(f"   Precision={metrics['precision']:.4f}")
 
-        pd.DataFrame([{'test_type': 'Global', 'samples': len(y), 'fraud_samples': y.sum(), **metrics}]).to_csv(Config.OUTPUT_DIR / 'Metrics' / 'GLOBAL_TEST_results.csv', index=False)
+        pd.DataFrame([{'test_type': 'Global', 'samples': len(y), 'fraud_samples': y.sum(), **metrics}]).to_csv(Path('artifacts') / 'baselines' / 'GLOBAL_TEST_results.csv', index=False)
         print(f"✅ Saved: GLOBAL_TEST_results.csv")
         # Persist a canonical clean baseline for attacked comparisons
         try:

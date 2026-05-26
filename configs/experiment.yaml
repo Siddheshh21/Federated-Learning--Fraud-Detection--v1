@@ -1,0 +1,48 @@
+
+# ===========================
+# Federated Learning Experiment Config
+# ===========================
+
+# Attack configuration
+attack_type: "label_flip"        # Label flipping attack
+attacker_clients: [4]       # Client 4 is the attacker
+
+# Label-flip attack parameters
+flip_percent: 0.7  # Increased from 0.4 to make attack more detectable                # fraction of fraud labels flipped to non-fraud
+
+# Backdoor attack parameters
+injected_samples: 15             # number of poisoned samples to inject
+trigger_features:                # feature pattern used as backdoor trigger
+  ProductCD: "W"
+  card4: "visa"
+
+# Scaling attack parameters
+scaling_factor: 10               # multiplier applied to attacker updates
+
+# Byzantine attack parameters
+byzantine_strategy: "sign_flip"  # options: sign_flip, random, drift
+drift_value: 100                # used if strategy = drift
+
+# Federated training parameters
+rounds: 3                       # reduced from 5 to 3 rounds for faster training
+boost_rounds: 50                # reduced from 100 to 50 boosting rounds per client per round
+num_clients: 5                  # total number of clients
+
+# Detection configuration
+detection:
+  rule_thresholds:
+    update_norm_high: 3.0
+    cosine_low: 0.1
+    fraud_ratio_jump: 0.15  # Lowered from 0.2 to catch more subtle attacks
+    staleness_high: 0.9
+    scaling_factor_high: 5.0
+    trigger_rate_high: 0.05
+  fuse_weights:
+    rules: 0.4
+    anomaly: 0.4
+    supervised: 0.2
+  risk_percentile: 90            # percentile threshold for flagging attackers
+
+# Output directories (relative to project root)
+artifacts_dir: "artifacts"
+

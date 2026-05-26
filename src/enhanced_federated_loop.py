@@ -1383,15 +1383,10 @@ class AttackedFLClient(_BaseFLClient):
                     thr = None
             if thr is None:
                 try:
-                    art_dir = Path('artifacts')
-                    if art_dir.exists():
-                        cand_dirs = [d for d in art_dir.iterdir() if d.is_dir() and d.name.startswith('FL_Training_Results_OPTIMIZED_')]
-                        for d in sorted(cand_dirs, key=lambda p: p.name, reverse=True):
-                            tf = d / 'Metrics' / 'GLOBAL_threshold.txt'
-                            if tf.exists():
-                                with open(tf, 'r') as f:
-                                    thr = float(f.read().strip())
-                                break
+                    tf = Path('artifacts') / 'baselines' / 'GLOBAL_threshold.txt'
+                    if tf.exists():
+                        with open(tf, 'r') as f:
+                            thr = float(f.read().strip())
                 except Exception:
                     thr = None
             if thr is None:
@@ -2119,15 +2114,10 @@ def run_enhanced_federated_training(attack_type=None, attacker_clients=[], confi
 
     if thr_used_global == 0.5:
         try:
-            art_dir = Path('artifacts')
-            if art_dir.exists():
-                cand_dirs = [d for d in art_dir.iterdir() if d.is_dir() and d.name.startswith('FL_Training_Results_OPTIMIZED_')]
-                for d in sorted(cand_dirs, key=lambda p: p.name, reverse=True):
-                    tf = d / 'Metrics' / 'GLOBAL_threshold.txt'
-                    if tf.exists():
-                        with open(tf, 'r') as f:
-                            thr_used_global = float(f.read().strip())
-                        break
+            tf = Path('artifacts') / 'baselines' / 'GLOBAL_threshold.txt'
+            if tf.exists():
+                with open(tf, 'r') as f:
+                    thr_used_global = float(f.read().strip())
         except Exception:
             pass
     try:
