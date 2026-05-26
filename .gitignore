@@ -1,0 +1,60 @@
+
+# Virtual Environment
+.venv/
+venv/
+env/
+ENV/
+
+# Data files (large CSV datasets from IEEE-CIS)
+data/
+
+# Trained models and artifacts
+artifacts/
+!artifacts/baselines/
+!artifacts/baselines/*
+baselines/
+src/artifacts/
+src/test_output/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# IDE & Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+src/artifacts/logs/
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.old
